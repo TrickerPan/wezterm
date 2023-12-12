@@ -22,7 +22,7 @@ config.color_scheme = "Tokyo Night"
 config.font = wezterm.font "JetBrains Mono"
 
 -- Shortcuts
-local keys = require("keys")
+local keys = require("config.keys")
 config.keys = keys
 
 return config
