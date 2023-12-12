@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local helpers = require("helpers.basic")
 local apply_keys = require("config.keys")
 local apply_unix = require("config.unix")
 local apply_win = require("config.win")
@@ -25,7 +26,7 @@ if status then
   config.launch_menu = launch_menu
 end
 
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+if helpers.is_win then
   apply_win(config)
 else
   apply_unix(config)
