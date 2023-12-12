@@ -25,4 +25,10 @@ config.font = wezterm.font "JetBrains Mono"
 local keys = require("config.keys")
 config.keys = keys
 
+-- Launch menu
+local status, launch_menu = pcall(require, "config.launch_menu")
+if status then
+  config.launch_menu = launch_menu
+end
+
 return config
