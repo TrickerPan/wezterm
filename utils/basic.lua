@@ -1,6 +1,16 @@
 local module = {}
 
-module.is_windows = vim.loop.os_uname().version:match 'Windows'
-module.path_sep = module.is_windows and '\\' or '/'
+module.is_windows = (function()
+  if jit then
+    local os = string.lower(jit.os)
+    if os ~= "windows" then
+      return false
+    else
+      return true
+    end
+  else
+    return package.config:sub(1, 1) == "\\"
+  end
+end)()
 
 return module
