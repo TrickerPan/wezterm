@@ -1,0 +1,6 @@
+# README
+
+## Configuration
+
+- Appearance
+- Shortcuts
