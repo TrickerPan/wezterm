@@ -1,6 +1,4 @@
 local wezterm = require("wezterm")
-local unix = require("utils.unix")
-local win = require("utils.win")
 
 local act = wezterm.action
 
@@ -50,10 +48,6 @@ local keys = {
   },
 }
 
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-  win.insert_keys(keys)
-else
-  unix.insert_keys(keys)
+return function(config)
+  config.keys = keys
 end
-
-return keys

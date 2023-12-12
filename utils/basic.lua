@@ -1,6 +1,6 @@
 local module = {}
 
-module.is_windows = (function()
+module.is_win = (function()
   if jit then
     local os = string.lower(jit.os)
     if os ~= "windows" then

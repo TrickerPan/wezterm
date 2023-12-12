@@ -2,14 +2,7 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 
-local module = {}
-local config = {}
-
-function module.init(config)
-  -- Something happens here
-end
-
-config.keys = {
+local keys = {
   -- Window management
   {
     key = "/",
@@ -29,10 +22,13 @@ config.keys = {
   },
 }
 
-function module.insert_keys(keys)
-  for _, key in ipairs(config.keys) do
-    table.insert(keys, key)
+local function insert_keys(config)
+  for _, key in ipairs(keys) do
+    table.insert(config.keys, key)
   end
 end
 
-return module
+return function(config)
+  config.default_prog = { "zsh" }
+  insert_keys(config)
+end

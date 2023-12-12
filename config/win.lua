@@ -2,14 +2,7 @@ local wezterm = require("wezterm")
 
 local act = wezterm.action
 
-local module = {}
-local config = {}
-
-function module.init(config)
-  config.default_prog = { "pwsh" }
-end
-
-config.keys = {
+local keys = {
   -- Copy and paste
   {
     key = "c",
@@ -97,19 +90,24 @@ config.keys = {
   },
 }
 
--- Tab management
-for i = 1, 9 do
-  table.insert(config.keys, {
-    key = tostring(i),
-    mods = "ALT",
-    action = act.ActivateTab(i - 1),
-  })
-end
 
-function module.insert_keys(keys)
-  for _, key in ipairs(config.keys) do
-    table.insert(keys, key)
+
+local function insert_keys(config)
+  for _, key in ipairs(keys) do
+    table.insert(config.keys, key)
+  end
+
+  -- Tab management
+  for i = 1, 9 do
+    table.insert(keys, {
+      key = tostring(i),
+      mods = "ALT",
+      action = act.ActivateTab(i - 1),
+    })
   end
 end
 
-return module
+return function(config)
+  config.default_prog = { "pwsh" }
+  insert_keys(config)
+end
