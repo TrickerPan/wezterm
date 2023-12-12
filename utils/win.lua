@@ -6,7 +6,7 @@ local module = {}
 local config = {}
 
 function module.init(config)
-  config.default_prog = "pwsh"
+  config.default_prog = { "pwsh" }
 end
 
 config.keys = {
