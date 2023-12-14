@@ -16,9 +16,25 @@ local keys = {
     action = act.SplitVertical { domain = "CurrentPaneDomain" },
   },
   {
+    key = "T",
+    mods = "CTRL|SHIFT",
+    action = act.SplitPane {
+      direction = "Down",
+      command = {
+        domain = "CurrentPaneDomain"
+      },
+      size = { Percent = 20 },
+    },
+  },
+  {
     key = "W",
     mods = "CTRL|SHIFT",
     action = act.CloseCurrentPane { confirm = true },
+  },
+  {
+    key = "E",
+    mods = "CTRL|SHIFT",
+    action = act.RotatePanes 'Clockwise',
   },
   {
     key = "h",

@@ -15,7 +15,7 @@ config.automatically_reload_config = false
 
 -- Appearance
 config.color_scheme = "Tokyo Night"
-config.font = wezterm.font "JetBrains Mono"
+config.font = wezterm.font "MonaspiceNe Nerd Font"
 
 -- Shortcuts
 apply_keys(config)
