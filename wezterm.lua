@@ -12,10 +12,19 @@ end
 
 -- Normal
 config.automatically_reload_config = false
+config.window_close_confirmation = "NeverPrompt"
 
 -- Appearance
 config.color_scheme = "Tokyo Night"
-config.font = wezterm.font "MonaspiceNe Nerd Font"
+config.font_size = 12
+config.font = wezterm.font_with_fallback {
+  "Monaspace Neon",
+  "Menlo",
+  "Monaco",
+  "Courier New",
+  "monospace",
+  "STHeiti",
+}
 
 -- Shortcuts
 apply_keys(config)
