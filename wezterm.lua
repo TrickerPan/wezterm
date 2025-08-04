@@ -1,44 +1,37 @@
 local wezterm = require("wezterm")
-local helpers = require("helpers.basic")
-local apply_keys = require("config.keys")
-local apply_unix = require("config.unix")
-local apply_win = require("config.win")
+local keys = require("config.keys")
 
 local config = {}
 
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+    config = wezterm.config_builder()
 end
 
 -- Normal
-config.automatically_reload_config = false
+config.term = "wezterm"
+config.automatically_reload_config = true
 config.window_close_confirmation = "NeverPrompt"
+config.enable_kitty_keyboard = true
 
 -- Appearance
 config.color_scheme = "Tokyo Night"
-config.font_size = 12
+-- config.color_scheme = "Catppuccin Mocha"
+config.font_size = 13
 config.font = wezterm.font_with_fallback {
-  "Monaspace Neon",
-  "Menlo",
-  "Monaco",
-  "Courier New",
-  "monospace",
-  "STHeiti",
+    "Monaspace Neon",
+    "Menlo",
+    "Monaco",
+    "Courier New",
+    "STHeiti",
 }
 
 -- Shortcuts
-apply_keys(config)
+keys.setup(config)
 
 -- Launch menu
 local status, launch_menu = pcall(require, "config.launch_menu")
 if status then
-  config.launch_menu = launch_menu
-end
-
-if helpers.is_win then
-  apply_win(config)
-else
-  apply_unix(config)
+    config.launch_menu = launch_menu
 end
 
 return config

@@ -1,8 +1,10 @@
 local wezterm = require("wezterm")
 
-local module = {}
+local M = {}
 
-module.is_win = wezterm.target_triple == 'x86_64-pc-windows-msvc'
-module.is_unix = not module.is_win
+M.is_win = string.find(wezterm.target_triple, 'windows') ~= nil
+M.is_mac = string.find(wezterm.target_triple, 'apple') ~= nil
+M.is_linux = string.find(wezterm.target_triple, 'linux') ~= nil
+M.is_unix = M.is_linux or M.is_mac
 
-return module
+return M

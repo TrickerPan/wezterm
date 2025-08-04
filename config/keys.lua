@@ -1,69 +1,117 @@
 local wezterm = require("wezterm")
+local helpers = require("helpers.basic")
 
 local act = wezterm.action
 
--- Bindings for all platforms
-local keys = {
-  -- Pane management
-  {
-    key = "H",
-    mods = "CTRL|SHIFT",
-    action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
-  },
-  {
-    key = "V",
-    mods = "CTRL|SHIFT",
-    action = act.SplitVertical { domain = "CurrentPaneDomain" },
-  },
-  {
-    key = "T",
-    mods = "CTRL|SHIFT",
-    action = act.SplitPane {
-      direction = "Down",
-      command = {
-        domain = "CurrentPaneDomain"
-      },
-      size = { Percent = 20 },
-    },
-  },
-  {
-    key = "W",
-    mods = "CTRL|SHIFT",
-    action = act.CloseCurrentPane { confirm = true },
-  },
-  {
-    key = "E",
-    mods = "CTRL|SHIFT",
-    action = act.RotatePanes 'Clockwise',
-  },
-  {
-    key = "h",
-    mods = "CTRL",
-    action = act.ActivatePaneDirection "Left",
-  },
-  {
-    key = "j",
-    mods = "CTRL",
-    action = act.ActivatePaneDirection "Down",
-  },
-  {
-    key = "k",
-    mods = "CTRL",
-    action = act.ActivatePaneDirection "Up",
-  },
-  {
-    key = "l",
-    mods = "CTRL",
-    action = act.ActivatePaneDirection "Right",
-  },
-  -- Debug mode
-  {
-    key = "D",
-    mods = "CTRL|SHIFT",
-    action = act.ShowDebugOverlay,
-  },
-}
+local keys = {}
 
-return function(config)
-  config.keys = keys
+if helpers.is_mac then
+    local neovim_keys = {
+        -- Save
+        {
+            key = "s",
+            mods = "CMD",
+            action = act.SendString('\x1b[115;9u')
+        },
+        -- Window navigation
+        {
+            key = "h",
+            mods = "CMD",
+            action = act.SendString('\x1b[104;9u')
+        },
+        {
+            key = "j",
+            mods = "CMD",
+            action = act.SendString('\x1b[106;9u')
+        },
+        {
+            key = "k",
+            mods = "CMD",
+            action = act.SendString('\x1b[107;9u')
+        },
+        {
+            key = "l",
+            mods = "CMD",
+            action = act.SendString('\x1b[108;9u')
+        },
+        -- Window resize
+        {
+            key = "LeftArrow",
+            mods = "CMD",
+            action = act.SendString('\x1b[1;9D')
+        },
+        {
+            key = "DownArrow",
+            mods = "CMD",
+            action = act.SendString('\x1b[1;9B')
+        },
+        {
+            key = "UpArrow",
+            mods = "CMD",
+            action = act.SendString('\x1b[1;9A')
+        },
+        {
+            key = "RightArrow",
+            mods = "CMD",
+            action = act.SendString('\x1b[1;9C')
+        },
+        -- Completion accept / Picker refine
+        {
+            key = "Space",
+            mods = "CMD",
+            action = act.SendString('\x1b[32;9u')
+        },
+        -- Completion scroll down / Picker scroll down
+        {
+            key = "f",
+            mods = "CMD",
+            action = act.SendString('\x1b[102;9u')
+        },
+        -- Completion scroll up / Picker scroll up
+        {
+            key = "b",
+            mods = "CMD",
+            action = act.SendString('\x1b[98;9u')
+        },
+        -- Toggle file explorer
+        {
+            key = "e",
+            mods = "CMD|SHIFT",
+            action = act.SendString('\x1b[101;10u')
+        },
+        -- Picker mark one
+        {
+            key = "x",
+            mods = "CMD",
+            action = act.SendString('\x1b[120;9u')
+        },
+        -- Picker mark all
+        {
+            key = "a",
+            mods = "CMD",
+            action = act.SendString('\x1b[97;9u')
+        },
+        -- Picker move start
+        {
+            key = "g",
+            mods = "CMD",
+            action = act.SendString('\x1b[103;9u')
+        },
+        -- Picker paste
+        {
+            key = "r",
+            mods = "CMD",
+            action = act.SendString('\x1b[114;9u')
+        },
+    }
+
+    for _, key in ipairs(neovim_keys) do
+        table.insert(keys, key)
+    end
 end
+
+return {
+    setup = function(config)
+        config.keys = keys
+    end,
+}
