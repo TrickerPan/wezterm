@@ -108,6 +108,14 @@ if helpers.is_mac then
     for _, key in ipairs(neovim_keys) do
         table.insert(keys, key)
     end
+elseif helpers.is_win then
+    keys = {
+        {
+            key = "l",
+            mods = "ALT",
+            action = act.ShowLauncher
+        }
+    }
 end
 
 return {

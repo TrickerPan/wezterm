@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local keys = require("config.keys")
+local launch_menu = require("config.launch_menu")
 
 local config = {}
 
@@ -29,9 +30,6 @@ config.font = wezterm.font_with_fallback {
 keys.setup(config)
 
 -- Launch menu
-local status, launch_menu = pcall(require, "config.launch_menu")
-if status then
-    config.launch_menu = launch_menu
-end
+launch_menu.setup(config)
 
 return config
