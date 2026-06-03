@@ -8,6 +8,7 @@ local config = wezterm.config_builder()
 -- Normal
 config.automatically_reload_config = true
 config.window_close_confirmation = "NeverPrompt"
+config.warn_about_missing_glyphs = false
 
 -- Appearance
 config.color_scheme = "Tokyo Night"
