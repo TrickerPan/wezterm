@@ -1,5 +1,5 @@
 ### Requirement: 放大字体
-配置 SHALL 提供快捷键在运行时增大字体大小。
+配置 SHALL 提供快捷键在运行时增大字体大小（依赖 WezTerm 内置默认键，`config/keys.lua` 不显式绑定）。
 
 #### Scenario: macOS 放大字体
 - **WHEN** 用户在 macOS 上按下 `CMD+=`
@@ -10,7 +10,7 @@
 - **THEN** 终端字体大小增大一个步进
 
 ### Requirement: 缩小字体
-配置 SHALL 提供快捷键在运行时减小字体大小。
+配置 SHALL 提供快捷键在运行时减小字体大小（依赖 WezTerm 内置默认键，`config/keys.lua` 不显式绑定）。
 
 #### Scenario: macOS 缩小字体
 - **WHEN** 用户在 macOS 上按下 `CMD+-`
@@ -21,7 +21,7 @@
 - **THEN** 终端字体大小减小一个步进
 
 ### Requirement: 重置字体大小
-配置 SHALL 提供快捷键将字体大小重置为配置中的默认值。
+配置 SHALL 提供快捷键将字体大小重置为配置中的默认值（依赖 WezTerm 内置默认键，`config/keys.lua` 不显式绑定）。
 
 #### Scenario: macOS 重置字体大小
 - **WHEN** 用户在 macOS 上按下 `CMD+0`
