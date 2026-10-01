@@ -1,4 +1,3 @@
-local wezterm = require('wezterm')
 local helper = require("helpers.basic")
 
 local launch_menu = {}
@@ -8,10 +7,6 @@ if helper.is_win then
         {
             label = "pwsh",
             args = { "pwsh.exe" }
-        },
-        {
-            label = "Ubuntu",
-            args = { "wsl.exe", "--cd", "~" }
         }
     }
 end
@@ -23,7 +18,6 @@ M.setup = function(config)
 
     if (helper.is_win) then
         config.default_prog = { "pwsh.exe" }
-        -- config.wsl_domains  = wezterm.default_wsl_domains()
     end
 end
 
